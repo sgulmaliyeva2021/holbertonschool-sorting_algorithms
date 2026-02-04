@@ -9,7 +9,7 @@ void swap_int(int *a, int *b)
 {
 	int temp;
 
-	if (a != b)
+	if (a != b && *a != *b)
 	{
 		temp = *a;
 		*a = *b;
@@ -34,21 +34,18 @@ size_t lomuto_partition(int *array, size_t low, size_t high, size_t size)
 
 	for (j = low; j < high; j++)
 	{
-		if (array[j] < array[high])
-		{
-			if (i != j)
-			{
-				swap_int(&array[i], &array[j]);
-				print_array(array, size);
-			}
-			i++;
-		}
-	}
+		swap_int(&array[i], &array[j]);
+		if (i != j) /* print only if the swap actually changes array */
+			print_array(array, size);
+		i++;
+
+        }
 
 	if (i != high)
 	{
 		swap_int(&array[i], &array[high]);
-		print_array(array, size);
+		if (i != high) /* print only if the swap actually changes array */
+			print_array(array, size);
 	}
 
 	return (i);
