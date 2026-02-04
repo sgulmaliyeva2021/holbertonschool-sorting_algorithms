@@ -1,3 +1,3 @@
-echo "O(n)" > 0-O
-echo "O(n^2)" >> 0-O
-echo "O(n^2)" >> 0-O
+O(n)
+O(n^2)
+O(n^2)
