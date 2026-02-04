@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stddef.h>
 
 /**
  * swap_int - swaps two integers in an array
@@ -7,23 +8,23 @@
  */
 void swap_int(int *a, int *b)
 {
-    int temp;
+    int tmp;
 
     if (a != b)
     {
-        temp = *a;
+        tmp = *a;
         *a = *b;
-        *b = temp;
+        *b = tmp;
     }
 }
 
 /**
- * lomuto_partition - partitions the array using Lomuto scheme
+ * lomuto_partition - partitions an array using Lomuto scheme
  * @array: array to partition
- * @low: start index
- * @high: end index
- * @size: size of array (for printing)
- * Return: index of pivot
+ * @low: starting index
+ * @high: ending index
+ * @size: size of the array (for printing)
+ * Return: pivot index
  */
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
@@ -34,7 +35,7 @@ int lomuto_partition(int *array, int low, int high, size_t size)
     {
         if (array[j] < pivot)
         {
-            if (i != j)  /* only swap if different index */
+            if (i != j)
             {
                 swap_int(&array[i], &array[j]);
                 print_array(array, size);
@@ -43,20 +44,21 @@ int lomuto_partition(int *array, int low, int high, size_t size)
         }
     }
 
-    if (i != high)  /* final pivot swap */
+    if (i != high)
     {
         swap_int(&array[i], &array[high]);
         print_array(array, size);
     }
+
     return i;
 }
 
 /**
- * quick_sort_recursive - recursive Quick sort
+ * quick_sort_recursive - recursive quick sort
  * @array: array to sort
- * @low: start index
- * @high: end index
- * @size: array size for printing
+ * @low: starting index
+ * @high: ending index
+ * @size: size of the array (for printing)
  */
 void quick_sort_recursive(int *array, int low, int high, size_t size)
 {
@@ -71,9 +73,10 @@ void quick_sort_recursive(int *array, int low, int high, size_t size)
 }
 
 /**
- * quick_sort - sorts an array using Quick sort (Lomuto)
+ * quick_sort - sorts an array of integers in ascending order
+ * using the Quick sort algorithm (Lomuto scheme)
  * @array: array to sort
- * @size: size of array
+ * @size: size of the array
  */
 void quick_sort(int *array, size_t size)
 {
